@@ -2,19 +2,21 @@
 
 Prometheus exporter to exporter container status
 
-## deploy
+暴露宿主机上的docker容器状态信息给prometheus。
 
-``` shell
-# build image
-docker-compose build
-# run container
-docker-compose up -d
-```
+流程：
 
-## metric
+- 创建一个docker client，连接到宿主机的docker socket
+- 通过client api获取本机所有docker容器
+- 过滤掉不关心的容器
+- 生成promethues metrics
 
-docker_container_state docker container status, ignore some container with prefix-to-skip command arg
+过滤掉的容器：
 
-## TODO
+- 以k8s_开头的，因为k8s集群中的容器已经被监控了
 
-- add tests
+参数：
+
+- --listen-address 监听端口，默认9901
+- --refresh-interval 刷新时间，默认5秒
+- --prefix-to-skip 跳过的容器名称，以逗号分隔，默认值k8s_
