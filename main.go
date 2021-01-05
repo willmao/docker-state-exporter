@@ -82,6 +82,7 @@ func main() {
 				if err != nil {
 					log.Println(err)
 				}
+				lastTime = time.Now()
 				for _, container := range containers {
 					if len(container.Names) == 0 {
 						continue
