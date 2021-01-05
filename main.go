@@ -76,13 +76,13 @@ func main() {
 	go func() {
 		for {
 			currentTime := time.Now()
-			dockerStateGauge.Reset()
 			if currentTime.Sub(lastTime).Seconds() > *refreshInterval {
 				containers, err := cli.ContainerList(context.Background(), types.ContainerListOptions{All: true})
 				if err != nil {
 					log.Println(err)
 				}
 				lastTime = time.Now()
+				dockerStateGauge.Reset()
 				for _, container := range containers {
 					if len(container.Names) == 0 {
 						continue
