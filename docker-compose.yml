@@ -1,0 +1,13 @@
+version: "2"
+
+services:
+  docker-state-exporter:
+    build:
+      context: .
+    container_name: docker-state-exporter
+    ports:
+      - "9901:9901"
+    network_mode: bridge
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock:ro
+    restart: on-failure:3
