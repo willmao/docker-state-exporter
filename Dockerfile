@@ -4,7 +4,7 @@ COPY . /tmp/docker-state-exporter/
 
 WORKDIR /tmp/docker-state-exporter/
 
-RUN env GOOS=linux GOARCH=amd64 go build && ls -l /tmp/docker-state-exporter/
+RUN env GOOS=linux GOARCH=amd64 go build
 
 FROM ubuntu:16.04
 
