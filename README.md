@@ -20,3 +20,5 @@ Prometheus exporter to exporter container status
 - --listen-address 监听端口，默认9901
 - --refresh-interval 刷新时间，默认5秒
 - --prefix-to-skip 跳过的容器名称，以逗号分隔，默认值k8s_
+
+本项目使用阿里云容器镜像服务自动进行镜像构建，每个release产生一个构建，镜像公网地址: registry.cn-hangzhou.aliyuncs.com/willmao/docker-state-exporter:[版本，如0.9.0]
